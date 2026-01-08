@@ -1,4 +1,4 @@
-package derekahedron.mythictinkers.dispenser;
+package derekahedron.mythictinkers.block.dispenser;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
@@ -10,7 +10,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.DispenserBlock;
 
-public class BucketDispenserBehvaior implements DispenseItemBehavior {
+public class BucketDispenserBehavior implements DispenseItemBehavior {
     private final DefaultDispenseItemBehavior defaultBehavior = new DefaultDispenseItemBehavior();
 
     @Override

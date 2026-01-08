@@ -20,7 +20,7 @@ import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 
 import java.util.List;
 
-public record MaximumDestroySpeedModule(float destroySpeed, IJsonPredicate<BlockState> block) implements ModifierModule, BreakSpeedModifierHook {
+public record MaximumDestroySpeedModule(float destroySpeed, IJsonPredicate<BlockState> block) implements ModifierModule, BreakSpeedModifierHook{
     public static final List<ModuleHook<?>> DEFAULT_HOOKS =
             HookProvider.defaultHooks(ModifierHooks.BREAK_SPEED);
     public static final RecordLoadable<MaximumDestroySpeedModule> LOADER =
@@ -29,7 +29,9 @@ public record MaximumDestroySpeedModule(float destroySpeed, IJsonPredicate<Block
                     BlockPredicate.LOADER.defaultField("block", MaximumDestroySpeedModule::block),
                     MaximumDestroySpeedModule::new);
 
-    public void onBreakSpeed(IToolStackView var1, ModifierEntry var2, PlayerEvent.BreakSpeed var3, Direction var4, boolean var5, float var6) {}
+    public void onBreakSpeed(
+            IToolStackView tool, ModifierEntry modifier, PlayerEvent.BreakSpeed event,
+            Direction direction, boolean isEffective, float speed) {}
 
     public float modifyBreakSpeed(
             IToolStackView tool, ModifierEntry modifier, BreakSpeedContext context, float speed) {

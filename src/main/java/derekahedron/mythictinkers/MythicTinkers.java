@@ -1,7 +1,7 @@
 package derekahedron.mythictinkers;
 
 import derekahedron.mythictinkers.block.MTBlocks;
-import derekahedron.mythictinkers.dispenser.MTDispenserBehavior;
+import derekahedron.mythictinkers.block.dispenser.MTDispenserBehavior;
 import derekahedron.mythictinkers.fluid.MTFluidInteractions;
 import derekahedron.mythictinkers.fluid.MTFluidTypes;
 import derekahedron.mythictinkers.fluid.MTFluids;
@@ -25,8 +25,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
 @Mod(MythicTinkers.MOD_ID)
-public class MythicTinkers
-{
+public class MythicTinkers {
     public static final String MOD_ID = "mythictinkers";
     public static final String MOD_NAME = "Mythic Tinkers";
     private static final Logger LOGGER = LogUtils.getLogger();
