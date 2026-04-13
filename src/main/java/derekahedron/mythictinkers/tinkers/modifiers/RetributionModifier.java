@@ -1,8 +1,7 @@
 package derekahedron.mythictinkers.tinkers.modifiers;
 
-import derekahedron.mythictinkers.potion.MTEffects;
+import derekahedron.mythictinkers.entity.LivingEntityDuck;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
@@ -14,7 +13,7 @@ import slimeknights.tconstruct.library.tools.context.EquipmentContext;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 
 public class RetributionModifier extends NoLevelsModifier implements OnAttackedModifierHook {
-    public static final int SECONDS = (int) (20 * 4.0F);
+    public static final int DURATION = (int) (20 * 4.0F);
 
     @Override
     protected void registerHooks(ModuleHookMap.Builder hookBuilder) {
@@ -27,8 +26,9 @@ public class RetributionModifier extends NoLevelsModifier implements OnAttackedM
     public void onAttacked(
             IToolStackView tool, ModifierEntry modifier, EquipmentContext context,
             EquipmentSlot slotType, DamageSource source, float amount, boolean isDirectDamage) {
+        LivingEntity wearer = context.getEntity();
         if (source.getEntity() instanceof LivingEntity livingEntity) {
-            livingEntity.addEffect(new MobEffectInstance(MTEffects.MARKED_FOR_DEATH.get(), SECONDS));
+            ((LivingEntityDuck) livingEntity).mythictinkers_$markForDeath(wearer, DURATION);
         }
     }
 }

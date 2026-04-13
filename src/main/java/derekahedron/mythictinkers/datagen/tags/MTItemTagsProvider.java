@@ -4,6 +4,7 @@ import derekahedron.invexp.item.InvExpItemTags;
 import derekahedron.mythictinkers.MythicTinkers;
 import derekahedron.mythictinkers.item.MTItemTags;
 import derekahedron.mythictinkers.item.MTItems;
+import derekahedron.mythictinkers.util.CompatUtil;
 import derekahedron.mythictinkers.util.ForgeTags;
 import com.github.alexmodguy.alexscaves.server.block.ACBlockRegistry;
 import com.github.alexmodguy.alexscaves.server.item.ACItemRegistry;
@@ -222,6 +223,9 @@ public class MTItemTagsProvider extends ItemTagsProvider {
                 .addTag(ForgeTags.Items.DESOLUM_BLOCKS)
                 .addTag(ForgeTags.Items.PROSPRUM_BLOCKS)
                 .addTag(ForgeTags.Items.GUMBRONZE_BLOCKS);
+
+        tag(TinkerTags.Items.HELD)
+                .addOptional(CompatUtil.tinkersKatanas("katana"));
 
         tag(ACTagRegistry.MAGNETIC_ITEMS)
                 .addOptionalTag(TinkerMaterials.slimesteel.getIngotTag())

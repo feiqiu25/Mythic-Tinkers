@@ -102,7 +102,7 @@ public class MTMaterialStatsDataProvider extends AbstractMaterialStatsDataProvid
                         1000,
                         7.0F,
                         Tiers.NETHERITE,
-                        3.5F),
+                        3.0F),
                 HandleMaterialStats.multipliers()
                         .durability(1.0F)
                         .miningSpeed(1.0F)
@@ -130,7 +130,7 @@ public class MTMaterialStatsDataProvider extends AbstractMaterialStatsDataProvid
                         1170,
                         6.5F,
                         Tiers.NETHERITE,
-                        4.0F),
+                        3.5F),
                 HandleMaterialStats.multipliers()
                         .durability(0.95F)
                         .miningSpeed(1.0F)
@@ -219,7 +219,7 @@ public class MTMaterialStatsDataProvider extends AbstractMaterialStatsDataProvid
                 new GripMaterialStats(
                         0.0F,
                         0.0F,
-                        3.5F));
+                        3.0F));
 
         addMaterialStats(MTMaterialIds.DESOLUM,
                 new LimbMaterialStats(
@@ -244,7 +244,7 @@ public class MTMaterialStatsDataProvider extends AbstractMaterialStatsDataProvid
                 new GripMaterialStats(
                         -0.05F,
                         0.1F,
-                        4.0F));
+                        3.5F));
 
         addMaterialStats(MTMaterialIds.GUMBRONZE,
                 new LimbMaterialStats(

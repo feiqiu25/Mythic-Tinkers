@@ -1,4 +1,4 @@
-// 1.20.1	2025-12-24T10:58:43.1342278	Mythic Tinkers Item Tags
+// 1.20.1	2026-04-12T19:57:00.8086707	Mythic Tinkers Item Tags
 cde57559d82dab1410cc9a173962879f96c897fa data/alexscaves/tags/items/ferromagnetic_items.json
 2ef1a6f6ca0ea90ee3e491dc17d13168e12ebf43 data/forge/tags/items/ingots.json
 8b02d43c21a1944b3d9face303e35cb20b507ead data/forge/tags/items/ingots/aurichalcum.json
@@ -57,4 +57,5 @@ a3081f651b2a0ce30451b67f2781094dea7775b5 data/invexp/tags/items/sack_weight/fift
 498572f089cb985b76d076ef6ca171ef333587ae data/mythictinkers/tags/items/dombstone_bricks.json
 fff8771f2e3c1d0f219c4be7da0c0a68dc49d38a data/tconstruct/tags/items/anvil_metal.json
 430b7df17dd76319967a07e0143c1e4c6c1b759b data/tconstruct/tags/items/guides.json
+6684000affdd998ac53c0401a321028a288db6cb data/tconstruct/tags/items/modifiable/held.json
 aaf635d3fd39af0d7366475037eed6cb03a9c4b8 data/tconstruct/tags/items/workstation_rock.json

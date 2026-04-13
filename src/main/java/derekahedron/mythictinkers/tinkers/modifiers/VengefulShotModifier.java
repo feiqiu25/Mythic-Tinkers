@@ -1,13 +1,12 @@
 package derekahedron.mythictinkers.tinkers.modifiers;
 
+import derekahedron.mythictinkers.entity.LivingEntityDuck;
 import derekahedron.mythictinkers.mixin.ProjectileInvoker;
-import derekahedron.mythictinkers.potion.MTEffects;
 import derekahedron.mythictinkers.tinkers.hooks.MTModifierHooks;
 import derekahedron.mythictinkers.tinkers.hooks.ThrownToolHitModifierHook;
 import derekahedron.mythictinkers.util.MTUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -47,8 +46,9 @@ public class VengefulShotModifier extends NoLevelsModifier
             Projectile projectile, EntityHitResult hit, @Nullable LivingEntity attacker,
             @Nullable LivingEntity target, boolean notBlocked) {
         if (MTUtil.shouldBlockHitEffect(projectile, hit)) return false;
-        if (target != null) {
-            target.addEffect(new MobEffectInstance(MTEffects.MARKED_FOR_DEATH.get(), DURATION));
+
+        if (attacker != null && target != null) {
+            ((LivingEntityDuck) target).mythictinkers_$markForDeath(attacker, DURATION);
             CompoundTag compound = persistentData.getCompound(getId());
             compound.putBoolean(INACTIVE_KEY, true);
             persistentData.put(getId(), compound);
@@ -60,6 +60,7 @@ public class VengefulShotModifier extends NoLevelsModifier
     public boolean onProjectileHitsBlock(
             ModifierNBT modifiers, ModDataNBT persistentData, ModifierEntry modifier,
             Projectile projectile, BlockHitResult hit, @Nullable LivingEntity attacker) {
+        if (attacker == null) return false;
         if (projectile.level().isClientSide() || persistentData.getCompound(getId()).getBoolean(INACTIVE_KEY)) {
             return false;
         }
@@ -69,7 +70,7 @@ public class VengefulShotModifier extends NoLevelsModifier
                 entity -> entity instanceof LivingEntity livingEntity
                         && livingEntity != attacker
                         && livingEntity.isAlive()
-                        && livingEntity.hasEffect(MTEffects.MARKED_FOR_DEATH.get()));
+                        && ((LivingEntityDuck) livingEntity).mythictinkers_$isMarkedForDeath(attacker));
         if (entities.isEmpty()) {
             return false;
         }
@@ -85,7 +86,7 @@ public class VengefulShotModifier extends NoLevelsModifier
                     modifierEntry.getHook(ModifierHooks.PROJECTILE_HIT).onProjectileHitEntity(
                             modifiers, persistentData, modifierEntry, projectile, hitResult, attacker, livingEntity, true);
                 }
-                livingEntity.removeEffect(MTEffects.MARKED_FOR_DEATH.get());
+                ((LivingEntityDuck) livingEntity).mythictinkers_$unmarkForDeath();
             }
         }
         return false;
@@ -115,7 +116,7 @@ public class VengefulShotModifier extends NoLevelsModifier
                 entity -> entity instanceof LivingEntity livingEntity
                         && livingEntity != owner
                         && livingEntity.isAlive()
-                        && livingEntity.hasEffect(MTEffects.MARKED_FOR_DEATH.get()));
+                        && ((LivingEntityDuck) livingEntity).mythictinkers_$isMarkedForDeath(owner));
         if (entities.isEmpty()) return false;
 
         for (Entity entity : entities) {
@@ -131,7 +132,7 @@ public class VengefulShotModifier extends NoLevelsModifier
                             livingEntity,
                             livingEntity);
                 }
-                livingEntity.removeEffect(MTEffects.MARKED_FOR_DEATH.get());
+                ((LivingEntityDuck) livingEntity).mythictinkers_$unmarkForDeath();
             }
         }
 

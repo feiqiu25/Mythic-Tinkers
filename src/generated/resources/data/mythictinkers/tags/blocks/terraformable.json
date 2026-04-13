@@ -45,6 +45,14 @@
     "alexscaves:porous_coprolith",
     "alexscaves:peering_coprolith",
     {
+      "id": "betterend:sulphuric_rock",
+      "required": false
+    },
+    {
+      "id": "betterend:brimstone",
+      "required": false
+    },
+    {
       "id": "biomesoplenty:white_sandstone",
       "required": false
     },
@@ -194,6 +202,10 @@
     },
     {
       "id": "galosphere:pink_salt_cluster",
+      "required": false
+    },
+    {
+      "id": "scguns:phosphorite",
       "required": false
     },
     {

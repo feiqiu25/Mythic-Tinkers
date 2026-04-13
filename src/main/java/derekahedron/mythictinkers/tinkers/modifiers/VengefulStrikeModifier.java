@@ -1,6 +1,6 @@
 package derekahedron.mythictinkers.tinkers.modifiers;
 
-import derekahedron.mythictinkers.potion.MTEffects;
+import derekahedron.mythictinkers.entity.LivingEntityDuck;
 import derekahedron.mythictinkers.tinkers.hooks.EmptySwingModifierHook;
 import derekahedron.mythictinkers.tinkers.hooks.MTModifierHooks;
 import derekahedron.mythictinkers.util.MTUtil;
@@ -10,7 +10,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -51,8 +50,9 @@ public class VengefulStrikeModifier extends NoLevelsModifier implements GeneralI
     @Override
     public void afterMeleeHit(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float damageDealt) {
         LivingEntity target = context.getLivingTarget();
+        LivingEntity attacker = context.getAttacker();
         if (target != null) {
-            target.addEffect(new MobEffectInstance(MTEffects.MARKED_FOR_DEATH.get(), DURATION));
+            ((LivingEntityDuck) target).mythictinkers_$markForDeath(attacker, DURATION);
         }
     }
 
@@ -61,11 +61,12 @@ public class VengefulStrikeModifier extends NoLevelsModifier implements GeneralI
         if (player.level().isClientSide() || tool.isBroken()) {
             return;
         }
+
         List<Entity> entities = MTUtil.getEntitiesInRadius(
                 player, CURSE_RADIUS,
                 entity -> entity instanceof LivingEntity livingEntity
                         && livingEntity.isAlive()
-                        && livingEntity.hasEffect(MTEffects.MARKED_FOR_DEATH.get()));
+                        && ((LivingEntityDuck) livingEntity).mythictinkers_$isMarkedForDeath(player));
         if (entities.isEmpty()) {
             return;
         }
@@ -88,7 +89,7 @@ public class VengefulStrikeModifier extends NoLevelsModifier implements GeneralI
                         builder.toolAttributes(tool);
                     }
                     ToolAttackUtil.performAttack(tool, builder.build());
-                    target.removeEffect(MTEffects.MARKED_FOR_DEATH.get());
+                    ((LivingEntityDuck) target).mythictinkers_$unmarkForDeath();
                     ((ServerLevel) player.level()).sendParticles(ParticleTypes.SWEEP_ATTACK,
                             entity.getX(), entity.getY(0.5D), entity.getZ(),
                             0, 0.0D, 0.0D, 0.0D, 0.0D);
