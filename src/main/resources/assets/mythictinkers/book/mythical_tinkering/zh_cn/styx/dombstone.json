@@ -1,0 +1,14 @@
+{
+  "title": "冥石",
+  "item": "mythictinkers:dombstone",
+  "text": [
+    {
+      "text": "当冥河与水、熔岩等其他流体接触时，会转化为一种名为“冥石”的岩石类材料。",
+      "paragraph": true
+    },
+    {
+      "text": "这种材料似乎除了装饰之外别无用处。它也可以被制成砖块。",
+      "paragraph": true
+    }
+  ]
+}

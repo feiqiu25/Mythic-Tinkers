@@ -1,0 +1,18 @@
+{
+  "title": "冥河深板岩",
+  "item": "mythictinkers:stygian_deepslate",
+  "text": [
+    {
+      "text": "你可以通过挖掘“冥河深板岩”来获取冥河，这种岩石生成于深暗之域生物群系的基岩层。",
+      "paragraph": true
+    },
+    {
+      "text": "挖掘冥河深板岩时，冥河会立刻流淌出来，所以要小心。",
+      "paragraph": true
+    },
+    {
+      "text": "务必随身携带一个桶以便立刻将其舀起。流动的冥河会随时间蒸发，所以你不能离开后再回来取。",
+      "paragraph": true
+    }
+  ]
+}
